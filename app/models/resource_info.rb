@@ -2,7 +2,7 @@
 require 'open-uri'
 
 class ResourceInfo < ActiveRecord::Base
-  validate :url,:presence
+  validate :url,:presence,:uniqueness=>true
   has_many :thread_parts,:dependent => :destroy
   belongs_to :user
   after_save :regenerate
@@ -11,7 +11,6 @@ class ResourceInfo < ActiveRecord::Base
   Host = "http://bbs.go2eu.com/"
 
   def work
-    self.thread_parts.clear
     self.fetch_infos
   end
 
@@ -60,11 +59,16 @@ class ResourceInfo < ActiveRecord::Base
   def get_contents(url,author='')
     doc = Nokogiri::HTML(open(url))
     doc.css('#postlist > div').each do |ele|
+      uid = ele.attr('id')
+      if !uid.blank?
+        tp = ThreadPart.find_by_uid(uid)
+        next if tp
+      end
       if ele.css('.postauthor .postinfo a').first.content==author
         ele.css('.postcontent .defaultpost .postmessage').each do |c|
           c = fix_image(c)
           c = trim_nodes(c)
-          self.thread_parts.create :content=> c.content,:raw_content=>c.inner_html
+          self.thread_parts.create :content=> c.content,:raw_content=>c.inner_html,:uid=>uid
         end
       end
     end

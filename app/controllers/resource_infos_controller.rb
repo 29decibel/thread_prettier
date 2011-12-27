@@ -3,7 +3,7 @@ class ResourceInfosController < ApplicationController
   # GET /resource_infos
   # GET /resource_infos.json
   def index
-    @resource_infos = ResourceInfo.all
+    @resource_infos = ResourceInfo.order('created_at desc').all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,7 +12,7 @@ class ResourceInfosController < ApplicationController
   end
 
   def mine
-    @resource_infos = current_user.resource_infos
+    @resource_infos = current_user.resource_infos.order('created_at desc')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -50,10 +50,14 @@ class ResourceInfosController < ApplicationController
   # POST /resource_infos
   # POST /resource_infos.json
   def create
-    @resource_info = current_user.resource_infos.build(params[:resource_info])
+    @resource_info = ResourceInfo.find_by_url(params[:resource_info][:url]) || ResourceInfo.new(params[:resource_info])
+    if @resource_info.new_record?
+      @resource_info.user = current_user
+    end
 
     respond_to do |format|
       if @resource_info.save
+        current_user.resource_infos << @resource_info
         format.html { redirect_to @resource_info, notice: 'Resource info was successfully created.' }
         format.json { render json: @resource_info, status: :created, location: @resource_info }
       else

@@ -14,7 +14,7 @@ ThreadFilter::Application.routes.draw do  root :to => 'resource_infos#index'
     end
   end
   resources :thread_parts
-  root :to=>"resource_infos#index"
+  root :to=>"resource_infos#mine"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
