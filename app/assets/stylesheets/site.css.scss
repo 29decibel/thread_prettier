@@ -5,6 +5,24 @@
 .resource_info{
 
 }
+.header{
+  width:940px;
+  padding-bottom:10px;
+  height:50px;
+  margin:auto;
+  .menu{
+    float:left;
+    a{
+      float:left;
+      margin-right:10px;
+      font-size:20px;
+    }
+  }
+  .profile{
+    float:right;
+  }
+  border-bottom:1px solid #ccc;
+}
 #threadtitle{
   font-size:15px;
   h1{

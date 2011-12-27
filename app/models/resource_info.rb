@@ -1,8 +1,10 @@
+#coding: utf-8
 require 'open-uri'
 
 class ResourceInfo < ActiveRecord::Base
   validate :url,:presence
   has_many :thread_parts,:dependent => :destroy
+  belongs_to :user
   after_save :regenerate
 
   UrlPattern = "http://bbs.go2eu.com/viewthread.php?extra=page%3D1"
@@ -13,13 +15,19 @@ class ResourceInfo < ActiveRecord::Base
     self.fetch_infos
   end
 
+  def title
+    self[:title].blank? ? '===处理中==='  : self[:title]
+  end
+
   def fetch_infos
+    return if !support_url?
     doc = Nokogiri::HTML(open(url))
     page_num = doc.css('.pages a').count
     last_page = doc.css('.pages .last').first
     if last_page
       page_num = last_page.content.delete('.').to_i
     end
+    page_num = page_num==0 ? 1 : page_num
     author = doc.css('#postlist .postauthor .postinfo a').first.content
     self.update_attribute :author,author
     self.update_attribute :title,doc.title
@@ -29,6 +37,14 @@ class ResourceInfo < ActiveRecord::Base
       u = "#{UrlPattern}&tid=#{t}&page=#{p}"
       get_contents(u,author)
     end
+  end
+
+  def support_url?
+    if !self.url.start_with?('http://bbs.go2eu.com/') or !self.url.include?('tid=')
+      self.update_attribute :title,'url not support'
+      return false
+    end
+    true
   end
 
   handle_asynchronously :work

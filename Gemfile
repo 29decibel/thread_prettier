@@ -20,6 +20,10 @@ gem 'sass-rails',   '~> 3.1.5'
 gem 'jquery-rails'
 gem 'nokogiri'
 
+gem 'devise'
+gem 'activeadmin','0.3.4'
+gem 'meta_search',    '>= 1.1.0.pre'
+
 # $ RAILS_ENV=production script/delayed_job start
 # $ RAILS_ENV=production script/delayed_job stop
 # 
@@ -34,10 +38,10 @@ gem "daemons"
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

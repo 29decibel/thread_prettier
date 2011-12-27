@@ -1,0 +1,13 @@
+%article.resource_infos
+  - resource_infos.each do |resource_info|
+    .resource_item
+      =link_to resource_info.title,resource_info,:class=>'title'
+      .url=link_to '原文地址',resource_info.url
+      =image_tag 'http://bbs.go2eu.com/api/com_file_20111225/images/logo.png',:class=>'logo'
+      .item_actions
+        -if resource_info.user==current_user
+          = link_to '修改', edit_resource_info_path(resource_info)
+          = link_to '删除', resource_info, :confirm => 'Are you sure?', :method => :delete
+          = link_to '重新生成', regenerate_resource_info_path(resource_info), :method => :put
+        = link_to '收藏', like_resource_info_path(resource_info),:method=>:put
+

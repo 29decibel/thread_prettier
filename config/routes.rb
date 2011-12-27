@@ -1,7 +1,16 @@
 ThreadFilter::Application.routes.draw do  root :to => 'resource_infos#index'
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  devise_for :users
+
   resources :resource_infos do
+    collection do
+      get :mine
+    end
     member do
       put :regenerate
+      put :like
     end
   end
   resources :thread_parts

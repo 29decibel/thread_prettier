@@ -1,8 +1,18 @@
 class ResourceInfosController < ApplicationController
+  before_filter :authenticate_user!
   # GET /resource_infos
   # GET /resource_infos.json
   def index
     @resource_infos = ResourceInfo.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @resource_infos }
+    end
+  end
+
+  def mine
+    @resource_infos = current_user.resource_infos
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,7 +50,7 @@ class ResourceInfosController < ApplicationController
   # POST /resource_infos
   # POST /resource_infos.json
   def create
-    @resource_info = ResourceInfo.new(params[:resource_info])
+    @resource_info = current_user.resource_infos.build(params[:resource_info])
 
     respond_to do |format|
       if @resource_info.save
@@ -51,6 +61,12 @@ class ResourceInfosController < ApplicationController
         format.json { render json: @resource_info.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def like
+    @resource_info = ResourceInfo.find(params[:id])
+    current_user.resource_infos << @resource_info
+    redirect_to mine_resource_infos_path
   end
 
   # PUT /resource_infos/1
