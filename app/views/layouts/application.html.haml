@@ -10,8 +10,9 @@
         =link_to "首页", mine_resource_infos_path
         =link_to "我的收藏", mine_resource_infos_path
         =link_to "随便看看", resource_infos_path
-      .profile
-        .email= current_user.email
-        =link_to "退出", destroy_user_session_path,:method=>:delete
+      -if current_user
+        .profile
+          .email= current_user.email
+          =link_to "退出", destroy_user_session_path,:method=>:delete
     .container
       = yield
