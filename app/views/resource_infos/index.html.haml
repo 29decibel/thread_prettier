@@ -1,0 +1,14 @@
+.page-header
+  %h2 攻略列表
+%article.resource_infos
+  - @resource_infos.each do |resource_info|
+    .resource_item
+      =link_to (resource_info.title.blank? ? '======处理中=====' : resource_info.title),resource_info,:class=>'title'
+      .url=link_to '原文地址',resource_info.url
+      =image_tag 'http://bbs.go2eu.com/api/com_file_20111225/images/logo.png',:class=>'logo'
+      .item_actions
+        = link_to '修改', edit_resource_info_path(resource_info)
+        = link_to '删除', resource_info, :confirm => 'Are you sure?', :method => :delete
+        = link_to '重新生成', regenerate_resource_info_path(resource_info), :confirm => 'Are you sure?', :method => :put
+  .add_resource
+    = link_to '添加攻略地址', new_resource_info_path,:class=>'btn'

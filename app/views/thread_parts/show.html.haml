@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Content:
+  = @thread_part.content
+%p
+  %b Resource info:
+  = @thread_part.resource_info_id
+
+= link_to '修改', edit_thread_part_path(@thread_part)
+\|
+= link_to '返回', thread_parts_path

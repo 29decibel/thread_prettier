@@ -1,0 +1,12 @@
+.resource_info
+  .title= @resource_info.title
+  .url=link_to '原文', @resource_info.url
+  .item_actions
+    = link_to '修改', edit_resource_info_path(@resource_info)
+    = link_to '返回', resource_infos_path
+%article
+  .thread_infos
+    -@resource_info.thread_parts.each do |t|
+      .thread_part
+        %p= raw(t.raw_content)
+

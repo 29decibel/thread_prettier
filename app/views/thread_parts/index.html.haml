@@ -1,0 +1,21 @@
+%h1 Listing thread_parts
+
+%table
+  %tr
+    %th Content
+    %th Resource info
+    %th
+    %th
+    %th
+
+  - @thread_parts.each do |thread_part|
+    %tr
+      %td= thread_part.content
+      %td= thread_part.resource_info_id
+      %td= link_to 'Show', thread_part
+      %td= link_to 'Edit', edit_thread_part_path(thread_part)
+      %td= link_to 'Destroy', thread_part, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Thread part', new_thread_part_path

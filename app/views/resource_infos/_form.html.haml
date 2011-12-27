@@ -1,0 +1,14 @@
+= form_for @resource_info do |f|
+  -if @resource_info.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@resource_info.errors.count, "error")} prohibited this resource_info from being saved:"
+      %ul
+        - @resource_info.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label '资源地址'
+    = f.text_field :url
+  .actions
+    = f.submit '保存',:class=>'btn'
+    = link_to '返回', resource_infos_path,:class=>'btn'

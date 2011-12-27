@@ -1,0 +1,16 @@
+= form_for @thread_part do |f|
+  -if @thread_part.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@thread_part.errors.count, "error")} prohibited this thread_part from being saved:"
+      %ul
+        - @thread_part.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :content
+    = f.text_area :content
+  .field
+    = f.label :resource_info_id
+    = f.number_field :resource_info_id
+  .actions
+    = f.submit 'Save'
