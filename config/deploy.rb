@@ -1,7 +1,7 @@
 default_run_options[:pty] = true
 
-set :application, "Flashcards"
-set :repository,  "git@github.com:29decibel/flashcards.git"
+set :application, "Thread Prettier"
+set :repository,  "git@github.com:29decibel/thread_prettier.git"
 set :user,"ldb"
 set :deploy_via, :remote_cache
 
@@ -21,7 +21,7 @@ namespace :deploy do
   task :production do
     # you just told the cap where you what to put , and then the current,release and shared folder will created
     # for you
-    set :deploy_to, "/home/ldb/flashcards"
+    set :deploy_to, "/home/ldb/tp"
     set :branch, "origin/master"
     set :env, "production"
     
