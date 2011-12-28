@@ -1,2 +1,2 @@
-$('.resource_item').before('#{escape_javascript(render('list_item',:resource_info=>@resource_info))}');
+$('.resource_item').first().before('#{escape_javascript(render('list_item',:resource_info=>@resource_info))}');
 $('form.new_resource_info').replaceWith('#{escape_javascript(render('form',:resource_info=>ResourceInfo.new))}');
