@@ -31,6 +31,7 @@ namespace :deploy do
       install_gem
       migrate
       assets
+      delayed_jobs
     end
 
     restart
@@ -60,6 +61,12 @@ namespace :deploy do
   task :migrate do
     #run "cd #{deploy_to}/current && RAILS_ENV=production bundle exec rake db:create"
     run "cd #{deploy_to}/current && RAILS_ENV=production bundle exec rake db:auto:migrate"
+  end
+
+  desc "restart delayed jobs"
+  task :delayed_jobs do
+    run "cd #{deploy_to}/current && RAILS_ENV=production script/delayed_job stop"
+    run "cd #{deploy_to}/current && RAILS_ENV=production script/delayed_job -n 2 start"
   end
 
   desc "Restart unicorn"
