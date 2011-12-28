@@ -1,7 +1,7 @@
 %article.resource_infos
   - resource_infos.each do |resource_info|
     .resource_item
-      =link_to resource_info.title,resource_info,:class=>'title'
+      =link_to "#{resource_info.title}(#{resource_info.state})",resource_info,:class=>'title'
       .url=link_to '原文地址',resource_info.url
       =image_tag 'logo_go2eu.png',:class=>'logo'
       .item_actions

@@ -16,10 +16,6 @@ class ResourceInfo < ActiveRecord::Base
     self.update_attribute :state,'完毕'
   end
 
-  def title
-    self[:title].blank? ? '===处理中==='  : self[:title]
-  end
-
   def fetch_infos
     return if !support_url?
     doc = noko_doc(url)

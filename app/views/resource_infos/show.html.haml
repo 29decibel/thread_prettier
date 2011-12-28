@@ -1,5 +1,5 @@
 .resource_info
-  .title= @resource_info.title
+  .title= "#{@resource_info.title}(#{@resource_info.state})"
   .url=link_to '原文', @resource_info.url
   .item_actions
     = link_to '修改', edit_resource_info_path(@resource_info)
