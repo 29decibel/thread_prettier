@@ -11,7 +11,9 @@ class ResourceInfo < ActiveRecord::Base
   Host = "http://bbs.go2eu.com/"
 
   def work
+    self.update_attribute :state,'生成中'
     self.fetch_infos
+    self.update_attribute :state,'完毕'
   end
 
   def title
@@ -20,7 +22,6 @@ class ResourceInfo < ActiveRecord::Base
 
   def fetch_infos
     return if !support_url?
-    data = 
     doc = noko_doc(url)
     page_num = doc.css('.pages a').count
     last_page = doc.css('.pages .last').first
