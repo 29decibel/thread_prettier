@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(:version => 20111228073838) do
 
   create_table :invite_codes do |t|
     t.string :code
-    t.boolean :valid,:default=>true
+    t.boolean :used,:default=>false
 
     t.timestamps
   end

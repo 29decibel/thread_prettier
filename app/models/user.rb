@@ -17,12 +17,12 @@ class User < ActiveRecord::Base
 
   private
   def invite_code_valide
-    self.errors.add(:invite_code,'无效') if !InviteCode.valid.where('code=?',self.invite_code).any?
+    self.errors.add(:invite_code,'无效') if !InviteCode.not_used.where('code=?',self.invite_code).any?
   end
 
   def invalid_invite_code
     ic = InviteCode.find_by_code(self.invite_code)
-    ic.update_attribute(:valid,false) if ic
+    ic.update_attribute(:used,true) if ic
   end
 
 end
