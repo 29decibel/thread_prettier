@@ -112,7 +112,7 @@ class ResourceInfo < ActiveRecord::Base
 
   def trim_attrs(node)
     node.css('font').each do |f|
-      f.attributes.each{|att| att.value=''}
+      f.attributes.each{|att| f.attributes[att].value=''}
     end
     node
   end
