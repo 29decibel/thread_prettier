@@ -85,6 +85,7 @@
 .resource_infos{
   margin-top:20px;
   .resource_item{
+    min-height:110px;
     position:relative;
     background:#2C2C2C;
     color:white;
@@ -95,6 +96,8 @@
     .title{
       font-size:16px;
       text-decoration:none;
+      max-width:800px;
+      display:inline-block;
     }
 
     .url a{
