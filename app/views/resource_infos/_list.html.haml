@@ -10,7 +10,8 @@
           .avatar=image_tag(resource_info.author_avatar)
       .pps
         -resource_info.photo_previews.each do |pp|
-          =image_tag pp.photo.url(:thumb)
+          -if !pp.photo.url(:thumb).blank?
+            =image_tag pp.photo.url(:thumb)
       .item_actions
         -if resource_info.user==current_user
           = link_to '修改', edit_resource_info_path(resource_info)
