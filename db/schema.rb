@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228073838) do
+ActiveRecord::Schema.define(:version => 20111228123202) do
 
   create_table "resource_infos", :force => true do |t|
     t.string   "url"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20111228073838) do
     t.text     "raw_content"
     t.integer  "resource_info_id"
     t.string   "uid"
+    t.datetime "post_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

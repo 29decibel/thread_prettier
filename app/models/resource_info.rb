@@ -82,11 +82,17 @@ class ResourceInfo < ActiveRecord::Base
         next if tp
       end
       if ele.css('.postauthor .postinfo a').first.content==author
-        ele.css('.postcontent .defaultpost .postmessage').each do |c|
+        ele.css('.postcontent').each do |pc|
+          # get content info
+          c = pc.at_css(".defaultpost .postmessage")
+          next if !c
           c = fix_image(c)
           c = trim_nodes(c)
           c = trim_attrs(c)
-          self.thread_parts.create :content=> c.content,:raw_content=>c.inner_html,:uid=>uid
+          # get post date
+          date_info = pc.at_css('.posterinfo .authorinfo em').try(:content)
+          post_date = date_info.blank? ? '' : date_info[4..-1]
+          self.thread_parts.create :content=> c.content,:raw_content=>c.inner_html,:uid=>uid,:post_date=>post_date
         end
       end
     end

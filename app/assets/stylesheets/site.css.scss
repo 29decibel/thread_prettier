@@ -59,6 +59,8 @@
   .title{
     margin-bottom:3px;
     font-size:19px;
+    max-width:800px;
+    line-height:1.5em;
   }
   a{color:#1F0909;}
   background:#E1E1E1;
@@ -97,6 +99,7 @@
     a{color:#1F0909;}
     .title{
       font-size:16px;
+      line-height:1.5em;
       text-decoration:none;
       max-width:800px;
       display:inline-block;
