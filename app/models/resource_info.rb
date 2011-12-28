@@ -70,6 +70,7 @@ class ResourceInfo < ActiveRecord::Base
         ele.css('.postcontent .defaultpost .postmessage').each do |c|
           c = fix_image(c)
           c = trim_nodes(c)
+          c = trim_attrs(c)
           self.thread_parts.create :content=> c.content,:raw_content=>c.inner_html,:uid=>uid
         end
       end
@@ -106,6 +107,13 @@ class ResourceInfo < ActiveRecord::Base
 
   def trim_nodes(node)
     node.css('.newrate,script').remove
+    node
+  end
+
+  def trim_attrs(node)
+    node.css('font').each do |f|
+      f.attributes.each{|att| att.value=''}
+    end
     node
   end
 
