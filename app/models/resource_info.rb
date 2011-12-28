@@ -113,10 +113,10 @@ class ResourceInfo < ActiveRecord::Base
         img.attributes['src'].value = "#{Host}#{img.attr('src')}"
       end
       # add image thumb info
-      if !img.attributes['src'].blank? and (img.attributes['src'].end_with?('.jpg') or img.attributes['src'].end_with?('.png')) and (self.photo_previews.count < 5)
+      if !img.attr('src').blank? and (img.attr('src').end_with?('.jpg') or img.attr('src').end_with?('.png')) and (self.photo_previews.count < 5)
         pp = self.photo_previews.create
         # pp.remote_photo_url = img.attributes['src'].value
-        pp.process_image(img.attributes['src'].value)
+        pp.process_image(img.attr('src'))
       end
     end
     node
