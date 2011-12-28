@@ -103,7 +103,7 @@ class ResourceInfosController < ApplicationController
 
   def regenerate
     @resource_info = ResourceInfo.find(params[:id])
-    @resource_info.work
+    @resource_info.regenerate(true)
     redirect_to resource_infos_path
   end
 end

@@ -46,8 +46,8 @@ class ResourceInfo < ActiveRecord::Base
 
   handle_asynchronously :work
 
-  def regenerate
-    if url_changed?
+  def regenerate(force=false)
+    if url_changed? or force
       self.thread_parts.clear
       self.work
     end
@@ -109,7 +109,7 @@ class ResourceInfo < ActiveRecord::Base
 
   def trim_attrs(node)
     node.css('font').each do |f|
-      f.attributes.each{|att| f.attributes[att].value=''}
+      f.attributes.each{|k,v| f.attributes[k].value=''}
     end
     node
   end
