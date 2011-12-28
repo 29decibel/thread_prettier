@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228042315) do
+ActiveRecord::Schema.define(:version => 20111228051259) do
 
   create_table "resource_infos", :force => true do |t|
     t.string   "url"
     t.string   "title"
     t.string   "author"
+    t.string   "author_avatar"
     t.integer  "user_id"
     t.string   "state"
     t.datetime "created_at"

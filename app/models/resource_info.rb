@@ -29,8 +29,12 @@ class ResourceInfo < ActiveRecord::Base
     end
     page_num = page_num==0 ? 1 : page_num
     author = doc.css('#postlist .postauthor .postinfo a').first.content
+    author_avatar_img = doc.at_css('#postlist .postauthor .avatar img')
+
     self.update_attribute :author,author
     self.update_attribute :title,doc.title
+    self.update_attribute :author_avatar,author_avatar_img.attr('src')
+
     puts author
     t = tid
     (1..page_num).each do |p|
@@ -113,7 +117,7 @@ class ResourceInfo < ActiveRecord::Base
         img.attributes['src'].value = "#{Host}#{img.attr('src')}"
       end
       # add image thumb info
-      if !img.attr('src').blank? and (img.attr('src').end_with?('.jpg') or img.attr('src').end_with?('.png')) and (self.photo_previews.count < 5)
+      if !img.attr('src').blank? and (img.attr('src').end_with?('.jpg') or img.attr('src').end_with?('.png')) and (self.photo_previews.count < 10)
         pp = self.photo_previews.create
         # pp.remote_photo_url = img.attributes['src'].value
         pp.process_image(img.attr('src'))

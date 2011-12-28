@@ -4,6 +4,10 @@
       =link_to "#{resource_info.title}(#{resource_info.state})",resource_info,:class=>'title'
       .url=link_to '原文地址',resource_info.url
       =image_tag 'logo_go2eu.png',:class=>'logo'
+      .author_info
+        .name=resource_info.author
+        -if !resource_info.author_avatar.blank?
+          .avatar=image_tag(resource_info.author_avatar)
       .pps
         -resource_info.photo_previews.each do |pp|
           =image_tag pp.photo.url(:thumb)
