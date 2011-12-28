@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
 
   after_create :invalid_invite_code
 
+  def name
+    self.email
+  end
+
   private
   def invite_code_valide
     self.errors.add(:invite_code,'无效') if !InviteCode.not_used.where('code=?',self.invite_code).any?

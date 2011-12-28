@@ -1,7 +1,7 @@
 zh_cn:
   activerecord:
     models:
-      resource_info: 单词
+      resource_info: 资源
     attributes:
       resource_info:
         url: 原攻略链接地址
