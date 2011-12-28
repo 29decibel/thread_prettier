@@ -1,0 +1,13 @@
+zh_cn:
+  activerecord:
+    models:
+      resource_info: 单词
+    attributes:
+      resource_info:
+        url: 原攻略链接地址
+      user:
+        name: 用户名
+        email: 电子邮件
+        password: 密码
+        password_confirmation: 密码确认
+        invite_code: 邀请码

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228051259) do
+ActiveRecord::Schema.define(:version => 20111228073838) do
 
   create_table "resource_infos", :force => true do |t|
     t.string   "url"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20111228051259) do
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "reset_password_token"
+    t.string   "invite_code"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",                         :default => 0
@@ -110,6 +111,13 @@ ActiveRecord::Schema.define(:version => 20111228051259) do
   create_table :favorates do |t|
     t.integer :user_id
     t.integer :resource_info_id
+
+    t.timestamps
+  end
+
+  create_table :invite_codes do |t|
+    t.string :code
+    t.boolean :valid,:default=>true
 
     t.timestamps
   end

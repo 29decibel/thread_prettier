@@ -1,0 +1,18 @@
+.page-header
+  %h2 登录
+
+= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  -if f.object.errors.count>0
+    .form_errors= f.object.errors.full_messages.join(',')
+  .field
+    = f.label :email
+    .value= f.email_field :email
+  .field
+    = f.label :password
+    .value= f.password_field :password
+  -if devise_mapping.rememberable?
+    .field
+      = f.check_box :remember_me
+      = f.label '记住我'
+  = f.submit "登录",:class=>'btn'
+= render :partial => "users/shared/links"

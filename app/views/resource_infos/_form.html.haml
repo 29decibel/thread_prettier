@@ -1,4 +1,4 @@
-= form_for resource_info do |f|
+= form_for resource_info,:remote=>resource_info.new_record? do |f|
   -if resource_info.errors.any?
     #error_explanation
       %ul

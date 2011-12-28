@@ -23,13 +23,36 @@
   }
   border-bottom:1px solid #ccc;
 }
+.form_errors{
+  border:1px solid #ccc;
+  margin-bottom:10px;
+}
 #threadtitle{
   font-size:15px;
   h1{
     font-size:18px;
   }
 }
+.author_info{
+  position:absolute;
+  right:0px;
+  top:0px;
+  .name{
+    float:right;
+    margin-right:10px;
+    margin-top:10px
+  }
+  img{
+    float:right;
+    clear:right;
+    margin-top:10px;
+    margin-right:10px;
+    width:60px;
+    box-shadow:0px 0px 5px black;
+  }
+}
 .resource_info{
+  position:relative;
   margin:20px;
   padding:20px;
   .title{
@@ -73,20 +96,7 @@
       font-size:16px;
       text-decoration:none;
     }
-    .author_info{
-      position:absolute;
-      top:0px;
-      right:0px;
-      background:rgba(255,255,255,0.5);
-      padding:5px; 
-      color:#444;
-      text-align:center;
-      box-shadow:0px 0px 3px rgba(0,0,0,0.3);
-      img{
-        margin-top:4px;
-        width:50px;
-      }
-    }
+
     .url a{
       margin-top:5px;
       display:inline-block;
@@ -115,6 +125,17 @@
     margin-bottom:10px;
     margin-right:10px;
   }
+  .value{
+    input{
+      border:1px solid #ccc;
+      padding:3px;
+      line-height:17px;
+      font-size:17px;
+    }
+    & .field_with_errors input{
+      border:1px solid red;
+    }
+  }
   textarea{
     display:block;
     border:1px solid #ccc;
@@ -125,6 +146,7 @@
     font-size:20px;
   }
 }
+
 form{
   padding:20px 0px;
 }

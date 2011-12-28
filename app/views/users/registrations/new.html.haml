@@ -1,0 +1,23 @@
+.page-header
+  %h2 注册新账户
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  -if resource.errors.count>0
+    .form_errors
+      %ul
+        -resource.errors.full_messages.each do |err|
+          %li=err
+  .field
+    = f.label :email
+    .value= f.email_field :email
+  .field
+    = f.label :password 
+    .value= f.password_field :password 
+  .field
+    = f.label :password_confirmation
+    .value= f.password_field :password_confirmation
+  .field
+    = f.label :invite_code
+    .value= f.text_field :invite_code
+  = f.submit "填好了，注册",:class=>'btn'
+
+= render :partial => "users/shared/links"

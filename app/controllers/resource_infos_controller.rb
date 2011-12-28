@@ -50,17 +50,17 @@ class ResourceInfosController < ApplicationController
   # POST /resource_infos
   # POST /resource_infos.json
   def create
-    @resource_info = ResourceInfo.find_by_url(params[:resource_info][:url]) || ResourceInfo.new(params[:resource_info])
-    if @resource_info.new_record?
-      @resource_info.user = current_user
-    end
+    @resource_info = ResourceInfo.new(params[:resource_info])
+    @resource_info.user = current_user
 
     respond_to do |format|
       if @resource_info.save
         current_user.resource_infos << @resource_info
+        format.js
         format.html { redirect_to @resource_info, notice: 'Resource info was successfully created.' }
         format.json { render json: @resource_info, status: :created, location: @resource_info }
       else
+        format.js { render 'edit'}
         format.html { render action: "new" }
         format.json { render json: @resource_info.errors, status: :unprocessable_entity }
       end

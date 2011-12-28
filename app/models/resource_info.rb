@@ -2,7 +2,7 @@
 require 'open-uri'
 
 class ResourceInfo < ActiveRecord::Base
-  validate :url,:presence=>true,:uniqueness=>true
+  validates :url,:presence=>true,:uniqueness=>true
 
   has_many :thread_parts,:dependent => :destroy
   has_many :photo_previews,:dependent => :destroy
