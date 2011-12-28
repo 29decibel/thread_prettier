@@ -20,7 +20,8 @@ class ResourceInfo < ActiveRecord::Base
 
   def fetch_infos
     return if !support_url?
-    doc = Nokogiri::HTML(open(url))
+    data = 
+    doc = noko_doc(url)
     page_num = doc.css('.pages a').count
     last_page = doc.css('.pages .last').first
     if last_page
@@ -57,7 +58,7 @@ class ResourceInfo < ActiveRecord::Base
   private
 
   def get_contents(url,author='')
-    doc = Nokogiri::HTML(open(url))
+    doc = noko_doc(url)
     doc.css('#postlist > div').each do |ele|
       uid = ele.attr('id')
       if !uid.blank?
@@ -72,6 +73,11 @@ class ResourceInfo < ActiveRecord::Base
         end
       end
     end
+  end
+
+  def noko_doc(url)
+    data = open(url).read
+    Nokogiri::HTML(data)
   end
 
   def fix_image(node)
