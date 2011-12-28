@@ -61,6 +61,9 @@ namespace :deploy do
   task :migrate do
     #run "cd #{deploy_to}/current && RAILS_ENV=production bundle exec rake db:create"
     run "cd #{deploy_to}/current && RAILS_ENV=production bundle exec rake db:auto:migrate"
+    run "rm -rf #{deploy_to}/current/public/stylesheets/*.cache.css"
+    run "rm -rf #{deploy_to}/current/public/stylesheets/compiled/*"
+    run "rm -rf #{deploy_to}/current/public/javascripts/*.cache.js"
   end
 
   desc "restart delayed jobs"
