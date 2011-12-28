@@ -24,6 +24,8 @@ gem 'devise'
 gem 'activeadmin','0.3.4'
 gem 'meta_search',    '>= 1.1.0.pre'
 
+gem 'carrierwave'
+gem 'mini_magick'
 # $ RAILS_ENV=production script/delayed_job start
 # $ RAILS_ENV=production script/delayed_job stop
 # 

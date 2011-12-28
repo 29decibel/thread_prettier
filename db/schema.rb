@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228022228) do
+ActiveRecord::Schema.define(:version => 20111228042315) do
 
   create_table "resource_infos", :force => true do |t|
     t.string   "url"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(:version => 20111228022228) do
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table :photo_previews do |t|
+    t.string :photo
+    t.integer :resource_info_id
+
+    t.timestamps
   end
 
   create_table :delayed_jobs, :force => true do |table|

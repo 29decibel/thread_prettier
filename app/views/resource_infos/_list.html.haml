@@ -4,6 +4,9 @@
       =link_to "#{resource_info.title}(#{resource_info.state})",resource_info,:class=>'title'
       .url=link_to '原文地址',resource_info.url
       =image_tag 'logo_go2eu.png',:class=>'logo'
+      .pps
+        -resource_info.photo_previews.each do |pp|
+          =image_tag pp.photo.url(:thumb)
       .item_actions
         -if resource_info.user==current_user
           = link_to '修改', edit_resource_info_path(resource_info)

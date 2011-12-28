@@ -2,9 +2,12 @@
 require 'open-uri'
 
 class ResourceInfo < ActiveRecord::Base
-  validate :url,:presence,:uniqueness=>true
+  validate :url,:presence=>true,:uniqueness=>true
+
   has_many :thread_parts,:dependent => :destroy
+  has_many :photo_previews,:dependent => :destroy
   belongs_to :user
+
   after_save :regenerate
 
   UrlPattern = "http://bbs.go2eu.com/viewthread.php?extra=page%3D1"
@@ -36,12 +39,22 @@ class ResourceInfo < ActiveRecord::Base
     end
   end
 
+  def uri
+    @uri ||= URI(self.url)
+  end
+
   def support_url?
-    if !self.url.start_with?('http://bbs.go2eu.com/') or !self.url.include?('tid=')
+    Rails.logger.info '**********************************'
+    Rails.logger.info uri
+    Rails.logger.info uri.host
+    Rails.logger.info uri.query
+    Rails.logger.info '**********************************'
+    if self.uri and self.uri.host=='bbs.go2eu.com' and self.uri.query.include?('tid=')
+      return true
+    else
       self.update_attribute :title,'url not support'
       return false
     end
-    true
   end
 
   handle_asynchronously :work
@@ -49,6 +62,7 @@ class ResourceInfo < ActiveRecord::Base
   def regenerate(force=false)
     if url_changed? or force
       self.thread_parts.clear
+      self.photo_previews.clear
       self.work
     end
   end
@@ -98,6 +112,12 @@ class ResourceInfo < ActiveRecord::Base
       else
         img.attributes['src'].value = "#{Host}#{img.attr('src')}"
       end
+      # add image thumb info
+      if !img.attributes['src'].blank? and (img.attributes['src'].end_with?('.jpg') or img.attributes['src'].end_with?('.png')) and (self.photo_previews.count < 5)
+        pp = self.photo_previews.create
+        # pp.remote_photo_url = img.attributes['src'].value
+        pp.process_image(img.attributes['src'].value)
+      end
     end
     node
   end
@@ -115,9 +135,9 @@ class ResourceInfo < ActiveRecord::Base
   end
 
   def tid
-    start_i = url.index 'tid'
-    end_i = url.index '&'
-    url[(start_i+4)..(end_i-1)]
+    query = uri.query
+    tid_query = query.split('&').select{|a|a.include?('tid=')}.first
+    tid_query[4..-1]
   end
 
 end
