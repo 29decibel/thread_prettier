@@ -2,5 +2,3 @@
   %h2 我的攻略列表
 =render "form",:resource_info=>ResourceInfo.new
 =render "list",:resource_infos=>@resource_infos
-.add_resource
-  = link_to '添加攻略地址', new_resource_info_path,:class=>'btn'
