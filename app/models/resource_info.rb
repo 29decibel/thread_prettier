@@ -52,6 +52,7 @@ class ResourceInfo < ActiveRecord::Base
 
   def regenerate
     if url_changed?
+      self.thread_parts.clear
       self.work
     end
   end
