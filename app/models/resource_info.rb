@@ -33,7 +33,7 @@ class ResourceInfo < ActiveRecord::Base
 
     self.update_attribute :author,author
     self.update_attribute :title,doc.title
-    self.update_attribute :author_avatar,author_avatar_img.attr('src')
+    self.update_attribute(:author_avatar,author_avatar_img.attr('src')) if author_avatar_img
 
     puts author
     t = tid
