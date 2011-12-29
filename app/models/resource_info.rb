@@ -10,8 +10,6 @@ class ResourceInfo < ActiveRecord::Base
   scope :by_score,order('score desc')
   belongs_to :user
 
-  after_save :regenerate
-
   UrlPattern = "http://bbs.go2eu.com/viewthread.php?extra=page%3D1"
   Host = "http://bbs.go2eu.com/"
 
@@ -74,12 +72,10 @@ class ResourceInfo < ActiveRecord::Base
   handle_asynchronously :work
 
   def regenerate(force=false)
-    if url_changed? or force
-      self.thread_parts.clear
-      self.photo_previews.clear
-      self.update_attribute :state,'生成中'
-      self.work
-    end
+    self.thread_parts.clear
+    self.photo_previews.clear
+    self.update_attribute :state,'生成中'
+    self.work
   end
 
   private
