@@ -56,6 +56,17 @@
   position:relative;
   margin:20px 0px;
   padding:20px;
+  .rates{
+    a{
+      background:url('empty_star.png');
+      width:25px;
+      height:25px;
+      display:inline-block;
+      &.force_star{
+        background:url('star.png');
+      }
+    }
+  }
   .title{
     margin-bottom:3px;
     font-size:19px;
@@ -79,6 +90,7 @@
   img{
     box-shadow:0px 0px 5px rgba(0,0,0,0.3);
     max-width:800px;
+    margin-top:10px;
   }
 }
 

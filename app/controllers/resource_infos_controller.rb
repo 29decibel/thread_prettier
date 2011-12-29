@@ -47,6 +47,16 @@ class ResourceInfosController < ApplicationController
     @resource_info = ResourceInfo.find(params[:id])
   end
 
+  def rate
+    @resource_info = ResourceInfo.find(params[:id])
+    rate = params[:rate]
+    if @resource_info and rate
+      ur = (UserRate.where("user_id=? and resource_info_id=?",current_user.id,@resource_info.id).first || @resource_info.user_rates.build(:user=>current_user))
+      ur.rate = rate
+      ur.save
+    end
+  end
+
   # POST /resource_infos
   # POST /resource_infos.json
   def create

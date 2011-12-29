@@ -6,12 +6,17 @@ class ResourceInfo < ActiveRecord::Base
 
   has_many :thread_parts,:dependent => :destroy
   has_many :photo_previews,:dependent => :destroy
+  has_many :user_rates
   belongs_to :user
 
   after_save :regenerate
 
   UrlPattern = "http://bbs.go2eu.com/viewthread.php?extra=page%3D1"
   Host = "http://bbs.go2eu.com/"
+
+  def score
+    self.user_rates.average(:rate) || 0
+  end
 
   def work
     self.update_attribute :state,'生成中'
@@ -67,6 +72,7 @@ class ResourceInfo < ActiveRecord::Base
     if url_changed? or force
       self.thread_parts.clear
       self.photo_previews.clear
+      self.update_attribute :state,'生成中'
       self.work
     end
   end

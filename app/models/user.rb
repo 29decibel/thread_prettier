@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   has_many :favorates
   has_many :resource_infos,:through=>:favorates
+  has_many :user_rates
   validate :invite_code,:presence=>true
   validate :invite_code_valide
 

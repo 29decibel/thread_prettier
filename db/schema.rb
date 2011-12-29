@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228123202) do
+ActiveRecord::Schema.define(:version => 20111229010918) do
 
   create_table "resource_infos", :force => true do |t|
     t.string   "url"
@@ -119,6 +119,14 @@ ActiveRecord::Schema.define(:version => 20111228123202) do
   create_table :invite_codes do |t|
     t.string :code
     t.boolean :used,:default=>false
+
+    t.timestamps
+  end
+
+  create_table :user_rates do |t|
+    t.integer :user_id
+    t.integer :resource_info_id
+    t.integer :rate
 
     t.timestamps
   end

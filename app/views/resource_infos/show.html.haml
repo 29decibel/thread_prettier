@@ -1,16 +1,26 @@
 .resource_info
-  .title= "#{@resource_info.title}(#{@resource_info.state})"
+  .title
+    = "#{@resource_info.title}(#{@resource_info.state})"
   .url=link_to '原文', @resource_info.url
   .author_info
     .name=@resource_info.author
     -if !@resource_info.author_avatar.blank?
       .avatar=image_tag @resource_info.author_avatar
   .item_actions
-    = link_to '修改', edit_resource_info_path(@resource_info)
     = link_to '返回', resource_infos_path
+  .rates
+    =render "rates",:resource_info=>@resource_info
 %article
   .thread_infos
     -@resource_info.thread_parts.each do |t|
       .thread_part
         %p= raw(t.raw_content)
+:javascript
+  //$(function(){
+  //  $('.rates a').hover(function(){
+  //    $(this).siblings().removeClass('star');
+  //    $(this).prevAll().addClass('star');
+  //    $(this).addClass('star');
+  //  });
+  //});
 

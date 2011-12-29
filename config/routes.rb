@@ -11,6 +11,7 @@ ThreadFilter::Application.routes.draw do  root :to => 'resource_infos#index'
     member do
       put :regenerate
       put :like
+      put :rate
     end
   end
   resources :thread_parts

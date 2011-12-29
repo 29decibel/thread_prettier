@@ -1,0 +1,6 @@
+.score
+  总得分
+  =resource_info.score
+-5.times.each do |t|
+  =link_to "", rate_resource_info_path(resource_info,:rate=>t+1),:method=>:put,:remote=>true,:class=>(resource_info.score > t ? 'force_star' : '')
+
