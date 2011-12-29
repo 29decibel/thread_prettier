@@ -7,6 +7,7 @@ class ResourceInfo < ActiveRecord::Base
   has_many :thread_parts,:dependent => :destroy
   has_many :photo_previews,:dependent => :destroy
   has_many :user_rates
+  scope :by_score,order('score desc')
   belongs_to :user
 
   after_save :regenerate
@@ -14,8 +15,12 @@ class ResourceInfo < ActiveRecord::Base
   UrlPattern = "http://bbs.go2eu.com/viewthread.php?extra=page%3D1"
   Host = "http://bbs.go2eu.com/"
 
+  def update_score
+    self.update_attribute :score,(self.user_rates.average(:rate) || 0)
+  end
+
   def score
-    self.user_rates.average(:rate) || 0
+    self[:score] || 0
   end
 
   def work

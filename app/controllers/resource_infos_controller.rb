@@ -3,7 +3,7 @@ class ResourceInfosController < ApplicationController
   # GET /resource_infos
   # GET /resource_infos.json
   def index
-    @resource_infos = ResourceInfo.order('created_at desc').all
+    @resource_infos = ResourceInfo.by_score.order('created_at desc').all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -12,7 +12,7 @@ class ResourceInfosController < ApplicationController
   end
 
   def mine
-    @resource_infos = current_user.resource_infos.order('created_at desc')
+    @resource_infos = current_user.resource_infos.by_score.order('created_at desc')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -54,6 +54,7 @@ class ResourceInfosController < ApplicationController
       ur = (UserRate.where("user_id=? and resource_info_id=?",current_user.id,@resource_info.id).first || @resource_info.user_rates.build(:user=>current_user))
       ur.rate = rate
       ur.save
+      @resource_info.reload
     end
   end
 

@@ -16,4 +16,5 @@
       = link_to '删除', resource_info, :confirm => 'Are you sure?', :method => :delete
       = link_to '重新生成', regenerate_resource_info_path(resource_info), :method => :put
     = link_to '收藏', like_resource_info_path(resource_info),:method=>:put
+  .score=resource_info.score
 
