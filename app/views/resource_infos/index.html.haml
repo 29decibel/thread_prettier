@@ -1,4 +1,10 @@
 .page-header
   %h2 攻略列表
 =render "form",:resource_info=>ResourceInfo.new
+=render "filters"
 =render "list",:resource_infos=>@resource_infos
+:javascript
+  $('.filters a').click(function(){
+    $(this).siblings().removeClass('active');
+    $(this).addClass('active');
+  });

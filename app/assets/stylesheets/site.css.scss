@@ -102,6 +102,19 @@
   margin-top:20px;
   border-bottom:1px solid #ccc;
 }
+
+.filters{
+  a{
+    display:inline-block;
+    padding:5px 5px;
+    margin-right:0px;
+    &.active{
+      color:white;
+      background:#1F0909;
+    }
+  }
+}
+
 .resource_infos{
   margin-top:20px;
   .resource_item{

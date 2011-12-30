@@ -1,4 +1,5 @@
 .page-header
   %h2 我的攻略列表
 =render "form",:resource_info=>ResourceInfo.new
+=render "filters"
 =render "list",:resource_infos=>@resource_infos

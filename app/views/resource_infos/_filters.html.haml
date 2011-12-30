@@ -1,0 +1,5 @@
+.filters
+  =link_to "全部", resource_infos_path,:remote=>true
+  -%w(欧洲 德国 意大利 东南亚 西班牙 法国 比利时).each do |place|
+    =link_to place, resource_infos_path(:place=>place),:remote=>true,:class=>(params[:place]==place ? 'active':'')
+

@@ -4,8 +4,12 @@ class ResourceInfosController < ApplicationController
   # GET /resource_infos.json
   def index
     @resource_infos = ResourceInfo.by_score.order('created_at desc')
+    if !params[:place].blank?
+      @resource_infos = @resource_infos.where('title like ?','%'+params[:place]+'%')
+    end
 
     respond_to do |format|
+      format.js
       format.html # index.html.erb
       format.json { render json: @resource_infos }
     end
@@ -13,7 +17,9 @@ class ResourceInfosController < ApplicationController
 
   def mine
     @resource_infos = current_user.resource_infos.by_score.order('created_at desc')
-
+    if !params[:place].blank?
+      @resource_infos = @resource_infos.where('title like ?','%'+params[:place]+'%')
+    end
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @resource_infos }
