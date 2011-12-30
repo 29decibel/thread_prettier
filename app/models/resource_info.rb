@@ -11,9 +11,7 @@ class ResourceInfo < ActiveRecord::Base
   belongs_to :user
 
   after_save :regenerate
-
-  UrlPattern = "http://bbs.go2eu.com/viewthread.php?extra=page%3D1"
-  Host = "http://bbs.go2eu.com/"
+  SUPPORT_HOST = %w(bbs.go2eu.com bbs.16fan.com)
 
   def update_score
     self.update_attribute :score,(self.user_rates.average(:rate) || 0)
@@ -48,9 +46,13 @@ class ResourceInfo < ActiveRecord::Base
     puts author
     t = tid
     (1..page_num).each do |p|
-      u = "#{UrlPattern}&tid=#{t}&page=#{p}"
+      u = "http://#{host}/viewthread.php?tid=#{t}&page=#{p}"
       get_contents(u,author)
     end
+  end
+  
+  def host
+    self.uri.host
   end
 
   def uri
@@ -58,12 +60,7 @@ class ResourceInfo < ActiveRecord::Base
   end
 
   def support_url?
-    Rails.logger.info '**********************************'
-    Rails.logger.info uri
-    Rails.logger.info uri.host
-    Rails.logger.info uri.query
-    Rails.logger.info '**********************************'
-    if self.uri and self.uri.host=='bbs.go2eu.com' and self.uri.query.include?('tid=')
+    if self.uri and SUPPORT_HOST.include?(self.uri.host) and !self.tid.blank?
       return true
     else
       self.update_attribute :title,'url not support'
@@ -78,6 +75,17 @@ class ResourceInfo < ActiveRecord::Base
       self.thread_parts.clear
       self.photo_previews.clear
       self.work
+    end
+  end
+
+  def tid
+    if uri.path.end_with?('.html') and uri.path.include?('thread')
+      uri.path.split('-')[1]
+      # http://bbs.16fan.com/thread-41770-1-1.html
+    else
+      query = uri.query
+      tid_query = query.split('&').select{|a|a.include?('tid=')}.first
+      tid_query.blank? ? '' : tid_query[4..-1]
     end
   end
 
@@ -127,10 +135,10 @@ class ResourceInfo < ActiveRecord::Base
         if img.attr('file').start_with?('http')
           img.attributes['src'].value = img.attr('file')
         else
-          img.attributes['src'].value = "#{Host}#{img.attr('file')}"
+          img.attributes['src'].value = "http://#{host}/#{img.attr('file')}"
         end
       else
-        img.attributes['src'].value = "#{Host}#{img.attr('src')}"
+        img.attributes['src'].value = "http://#{host}/#{img.attr('src')}"
       end
       # add image thumb info
       if !img.attr('src').blank? and (img.attr('src').end_with?('.jpg') or img.attr('src').end_with?('.png')) and (self.photo_previews.count < 10)
@@ -152,12 +160,6 @@ class ResourceInfo < ActiveRecord::Base
       f.attributes.each{|k,v| f.attributes[k].value=''}
     end
     node
-  end
-
-  def tid
-    query = uri.query
-    tid_query = query.split('&').select{|a|a.include?('tid=')}.first
-    tid_query[4..-1]
   end
 
 end

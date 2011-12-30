@@ -1,7 +1,7 @@
 .resource_item
   =link_to "#{resource_info.title}(#{resource_info.state})",resource_info,:class=>'title'
   .url=link_to '原文地址',resource_info.url,:target=>'_blank'
-  =image_tag 'logo_go2eu.png',:class=>'logo'
+  =link_to resource_info.host, resource_info.host,:class=>'logo'
   .author_info
     .name=resource_info.author
     -if !resource_info.author_avatar.blank?

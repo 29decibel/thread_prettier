@@ -1,7 +1,9 @@
+-content_for :title do
+  %title=@resource_info.title
 .resource_info
   .title
     = "#{@resource_info.title}(#{@resource_info.state})"
-  .url=link_to '原文', @resource_info.url
+  .url=link_to '原文', @resource_info.url,:target=>'_blank'
   .author_info
     .name=@resource_info.author
     -if !@resource_info.author_avatar.blank?
