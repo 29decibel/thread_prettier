@@ -7,6 +7,9 @@ class ResourceInfo < ActiveRecord::Base
   has_many :thread_parts,:dependent => :destroy
   has_many :photo_previews,:dependent => :destroy
   has_many :user_rates
+  has_many :favorates
+  has_many :users,:through=>:favorates
+
   scope :by_score,order('score desc')
   belongs_to :user
 

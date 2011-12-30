@@ -6,6 +6,10 @@
     .name=resource_info.author
     -if !resource_info.author_avatar.blank?
       .avatar=image_tag(resource_info.author_avatar)
+  .likes
+    目前有
+    =resource_info.users.count
+    人收藏
   .pps
     -resource_info.photo_previews.each do |pp|
       -if !pp.photo.url(:thumb).blank?
