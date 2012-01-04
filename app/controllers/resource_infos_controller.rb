@@ -1,5 +1,5 @@
 class ResourceInfosController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!,:except=>[:show]
   # GET /resource_infos
   # GET /resource_infos.json
   def index

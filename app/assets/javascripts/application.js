@@ -7,4 +7,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.sticky
+//= require jquery.scrollto.min
 //= require site

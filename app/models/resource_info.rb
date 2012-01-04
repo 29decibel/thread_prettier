@@ -14,7 +14,7 @@ class ResourceInfo < ActiveRecord::Base
   belongs_to :user
 
   after_save :regenerate
-  SUPPORT_HOST = %w(bbs.go2eu.com bbs.16fan.com)
+  SUPPORT_HOST = %w(bbs.go2eu.com bbs.16fan.com www.daododo.com)
 
   def update_score
     self.update_attribute :score,(self.user_rates.average(:rate) || 0)

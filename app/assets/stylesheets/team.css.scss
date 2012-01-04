@@ -1,0 +1,47 @@
+// Place all the styles related to the team controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.header{
+  .title{
+    float:left;
+    font-size:20px;
+  }
+  .subtitle{
+    float:left;
+    clear:left;
+  }
+}
+
+.studio_infos{
+  .step_container{
+    padding:10px;
+    width:960px;
+    min-height:800px;
+    margin-top:20px;
+    border-radius:9px 9px 9px;
+    img{
+      float:left;
+      height:600px;
+      margin:20px 0px 0px 20px;
+    }
+    .info{
+      padding:80px;
+      float:right;
+      width:300px;
+      .title{
+        font-size:20px;
+        padding:10px;
+        margin-bottom:40px;
+      }
+      a{
+        margin-top:10px;
+      }
+    }
+  }
+}
+
+.footer{
+  text-align:center;
+  width:940px;
+  margin:auto;
+}

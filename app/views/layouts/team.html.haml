@@ -1,0 +1,17 @@
+%html
+  %head
+    -if content_for?(:title)
+      =yield :title
+    -else
+      %title ThreadFilter
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .header
+      .title 29decibel Studio
+      .subtitle We know mobile and internet
+    .container
+      = yield
+    .footer
+      29decibel Studio

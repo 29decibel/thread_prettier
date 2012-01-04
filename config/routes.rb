@@ -1,6 +1,8 @@
 ThreadFilter::Application.routes.draw do  root :to => 'resource_infos#index'
   ActiveAdmin.routes(self)
 
+  get "team/info"
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
 
@@ -15,7 +17,7 @@ ThreadFilter::Application.routes.draw do  root :to => 'resource_infos#index'
     end
   end
   resources :thread_parts
-  root :to=>"resource_infos#mine"
+  root :to=>"team#info"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
