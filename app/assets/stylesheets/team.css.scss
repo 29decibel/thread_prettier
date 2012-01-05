@@ -13,24 +13,38 @@
 }
 
 .studio_infos{
+  .brief{
+    padding:20px 20px;
+    border-left:3px solid #ccc;
+    list-style:none;
+    float:right;
+    font-size:16px;
+    li{
+      margin-top:10px;
+    }
+  }
   .step_container{
     padding:10px;
+    border-top:1px solid #ccc;
     width:960px;
     min-height:800px;
     margin-top:20px;
     border-radius:9px 9px 9px;
+    &.step4{
+      min-height:500px;
+      height:500px;
+    }
     img{
       float:left;
-      height:600px;
+      max-height:600px;
       margin:20px 0px 0px 20px;
     }
     .info{
       padding:80px;
       float:right;
-      width:300px;
       .title{
         font-size:20px;
-        padding:10px;
+        padding:10px 0px;
         margin-bottom:40px;
       }
       a{
@@ -41,7 +55,9 @@
 }
 
 .footer{
+  border-top:1px solid #ccc;
   text-align:center;
   width:940px;
+  padding:20px 0px;
   margin:auto;
 }

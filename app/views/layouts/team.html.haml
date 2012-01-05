@@ -1,17 +1,25 @@
 %html
   %head
-    -if content_for?(:title)
-      =yield :title
-    -else
-      %title ThreadFilter
+    %title 29decibel Studio
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     .header
-      .title 29decibel Studio
-      .subtitle We know mobile and internet
+      .title
+        =link_to image_tag('29decibel_logo.png',:class=>'logo'),root_url
+        Studio
+      .subtitle Dedicate to mobile apps and internet
     .container
       = yield
     .footer
       29decibel Studio
+
+
+:css
+  .logo{
+    width:200px;
+  }
+  .header{
+    border:none;
+  }

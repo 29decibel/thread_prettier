@@ -1,38 +1,39 @@
 .studio_infos
   %ul.brief
-    %li We Know Internet and mobiles
-    %li Fast schech out development methods
+    %li We Both Know Internet and mobile apps
+    %li Fast sketch out development methods
+    %li Professional and beautiful lookings
 
   .step1.step_container
-    =image_tag 'Screenshot_3.png'
+    =image_tag 'listen_customers.png'
     .info
-      .title 1.Listen to our customers
-      =link_to 'next','#','data-next'=>'step2',:class=>'btn'
+      .title 1.Listen to our customer
+      =link_to 'Next','#','data-next'=>'step2',:class=>'btn'
   .step2.step_container
-    =image_tag 'Screenshot_3.png'
+    =image_tag 'sketches.png'
     .info
-      .title 2.Sketch out the requirements
-      =link_to 'next','#','data-next'=>'step3',:class=>'btn'
+      .title 2.Sketch out according to requirements
+      =link_to 'Next','#','data-next'=>'step3',:class=>'btn'
   .step3.step_container
-    =image_tag 'Screenshot_3.png'
+    =image_tag 'compare.png'
     .info
-      .title 3.Reasure requirements
-      =link_to 'next','#','data-next'=>'step4',:class=>'btn'
+      .title 3.Check requirements
+      =link_to 'Next','#','data-next'=>'step4',:class=>'btn'
   .step4.step_container
-    =image_tag 'Screenshot_3.png'
+    =image_tag 'xcode.png'
     .info
-      .title 4.App build
-      =link_to 'next','#','data-next'=>'step5',:class=>'btn'
+      .title 4.Start building app
+      =link_to 'Next','#','data-next'=>'step5',:class=>'btn'
   .step5.step_container
-    =image_tag 'Screenshot_3.png'
+    =image_tag 'deliver.png'
     .info
-      .title 5.Beta Deliver
-      =link_to 'next','#','data-next'=>'step6',:class=>'btn'
+      .title 5.Product Deliver
+      =link_to 'Check Our Teams','#','data-next'=>'step6',:class=>'btn'
   .step6.step_container
-    =image_tag 'Screenshot_3.png'
+    =image_tag 'team_members.png'
     .info
-      .title 6.Product Deliver
-      =link_to 'next','#','data-next'=>'step1',:class=>'btn'
+      .title Team Members
+      =link_to 'Back','#','data-next'=>'header',:class=>'btn'
 :javascript
   $(function(){
     $('.step_container a').click(function(){
