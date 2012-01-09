@@ -17,7 +17,7 @@ ThreadFilter::Application.routes.draw do
     end
   end
   resources :thread_parts
-  root :to=>'team#info'
+  root :to=>'resource_infos#index'
 
 
   # The priority is based upon order of creation:
