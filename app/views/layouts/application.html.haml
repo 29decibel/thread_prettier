@@ -5,17 +5,36 @@
     -else
       %title ThreadFilter
     = stylesheet_link_tag    "application"
+    = javascript_include_tag "http://www.google.com/jsapi"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     .header
       .menu
-        =link_to "首页", mine_resource_infos_path
-        =link_to "我的收藏", mine_resource_infos_path
-        =link_to "随便看看", resource_infos_path
+        =link_to "旅游搜索助理", mine_resource_infos_path
       -if current_user
         .profile
           .email= current_user.email
           =link_to "退出", destroy_user_session_path,:method=>:delete
     .container
-      = yield
+      .search
+        .slogan 如果不出去走走，你以为这就是全世界.---天堂电影院
+        #cse{'style'=>"width: 100%;"}
+          加载中，请稍后....
+:javascript
+  google.load('search', '1', {language : 'zh-CN', style : google.loader.themes.GREENSKY});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl(
+      '003556337014962056360:mz5bdsf2e0u');
+
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    customSearchControl.draw('cse');
+  }, true);
+:css
+  .search{
+    margin-top:10px;
+  }
+  .slogan{
+    margin:7px 0px;
+    font-size:16px;
+  }
