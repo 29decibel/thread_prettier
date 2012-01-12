@@ -16,6 +16,9 @@ ThreadFilter::Application.routes.draw do
       put :rate
     end
   end
+
+  resources :readable_articles,:only=>[:create,:show]
+
   resources :thread_parts
   root :to=>'resource_infos#index'
 
