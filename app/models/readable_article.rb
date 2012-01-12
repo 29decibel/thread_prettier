@@ -26,6 +26,10 @@ class ReadableArticle < ActiveRecord::Base
         results << "<div class='pp_post'>#{c.inner_html}</div>"
       end
     end
+    mafeng = doc.at_css('.artice_area')
+    if mafeng
+      results << mafeng.inner_html
+    end
     self.content = results
     self.save
   end
