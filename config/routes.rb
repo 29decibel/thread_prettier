@@ -1,4 +1,8 @@
 ThreadFilter::Application.routes.draw do  
+  get "today_words/home"
+
+  get "wod/home"
+
   ActiveAdmin.routes(self)
 
   match "team/info"
@@ -20,7 +24,7 @@ ThreadFilter::Application.routes.draw do
   resources :readable_articles,:only=>[:create,:show]
 
   resources :thread_parts
-  root :to=>'resource_infos#index'
+  root :to=>'today_words#home'
 
 
   # The priority is based upon order of creation:

@@ -1,0 +1,48 @@
+// Place all the styles related to the TodayWords controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.header{
+  height:80px;
+  text-align:center;
+  .logo{
+    width:200px;
+    margin-top:0px;
+    margin-bottom:30px;
+  }
+}
+body{
+  background:url('today_words/bg.jpg') no-repeat;
+  background-size:cover;
+}
+.preview{
+  margin:20px auto;
+  width:295px;
+  display:block;
+
+}
+.container{
+  position:relative;
+}
+#mc_embed_signup{
+  padding-top:20px;
+  box-shadow:0px 0px 5px rgba(255,255,255,0.3);
+  border-radius:10px 10px 10px;
+  color:white;
+  margin:auto;
+  padding:15px 20px 0px 20px;
+  font:14px Helvetica,Arial,sans-serif; 
+  width:300px;
+  input.email{
+    width:97%;
+  }
+  input.button{
+    background:#333;
+    width:97%;
+  }
+}
+.footer{
+  text-align:center;
+  margin:50px auto;
+  color:white;
+  
+}
