@@ -11,14 +11,20 @@
   }
 }
 body{
-  background:url('today_words/bg.jpg') no-repeat;
+  background:url('today_words/bg.jpg') no-repeat center center fixed;
   background-size:cover;
 }
 .preview{
+  position:relative;
   margin:20px auto;
-  width:295px;
+  width:100%;
   display:block;
+  height:560px;
+  .main{width:295px;}
+  text-align:center;
 
+}
+img.learn_words{
 }
 .container{
   position:relative;

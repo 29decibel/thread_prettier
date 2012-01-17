@@ -3,13 +3,15 @@
     %title 29decibel Studio
     = stylesheet_link_tag    "http://cdn-images.mailchimp.com/embedcode/slim-081711.css"
     = stylesheet_link_tag    "today_words"
-    = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     .header
       =image_tag 'today_words/logo.png',:class=>'logo'
     .container
-      =image_tag 'today_words/preview.png',:class=>'preview'
+      .preview
+        =image_tag 'today_words/learn_words.png',:class=>'learn_words'
+        =image_tag 'today_words/preview.png',:class=>'main'
+        =image_tag 'today_words/backup.png',:class=>'backup'
       .subscription
         =render "form"
 :css
