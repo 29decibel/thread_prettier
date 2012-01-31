@@ -1,11 +1,11 @@
 ThreadFilter::Application.routes.draw do  
-  get "today_words/home"
+  #get "today_words/home"
 
-  get "wod/home"
+  #get "wod/home"
 
   ActiveAdmin.routes(self)
 
-  match "team/info"
+  #match "team/info"
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
@@ -24,7 +24,7 @@ ThreadFilter::Application.routes.draw do
   resources :readable_articles,:only=>[:create,:show]
 
   resources :thread_parts
-  root :to=>'today_words#home'
+  root :to=>'resource_infos#index'
 
 
   # The priority is based upon order of creation:

@@ -2,7 +2,8 @@ body{
   overflow:auto;
 }
 .container{
-  margin:0px 20px;
+  width:960px;
+  margin:0px auto;
 }
 .search{
   float:left;
@@ -73,7 +74,8 @@ body{
 .header{
   padding-bottom:10px;
   height:50px;
-  margin:0px 20px;
+  width:960px;
+  margin:0px auto;
   .menu{
     float:left;
     a{

@@ -5,26 +5,19 @@
     -else
       %title ThreadFilter
     = stylesheet_link_tag    "application"
-    = javascript_include_tag "http://www.google.com/jsapi"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
     .header
       .menu
-        =link_to "旅游搜索助理", mine_resource_infos_path
-      .profile
-        -if current_user
+        =link_to "首页", mine_resource_infos_path
+        =link_to "我的收藏", mine_resource_infos_path
+        =link_to "随便看看", resource_infos_path
+      -if current_user
+        .profile
           .email= current_user.email
           =link_to "退出", destroy_user_session_path,:method=>:delete
-        -else
-          =link_to "登录", new_user_session_path
     .container
-      .search
-        #cse{'style'=>"width: 100%;"}
-          加载中，请稍后....
-      .right_column
-        %article.article_details
-        .readable_article
-        %iframe#page_infos
+      = yield
 
 
